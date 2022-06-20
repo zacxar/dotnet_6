@@ -1,0 +1,59 @@
+﻿@page
+@using dotnet_zadanie5.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model dotnet_zadanie5.Pages.People.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ostatnio Szukane</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].LeapYear)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <tbody>
+            @foreach (var item in Model.Person)
+            {
+            <tr>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.LeapYear)
+                </td>
+
+                <td>
+                    @if (item.UserId != null && item.UserId == UserManager.GetUserId(User).ToString())
+                    {
+                        <a class="btn btn-primary" asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
+                    }
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>

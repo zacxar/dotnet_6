@@ -1,0 +1,17 @@
+﻿@page
+@model dotnet_zadanie5.Pages.LastSearched
+@{
+    <h1>Ostatnie wyszukiwania</h1>
+
+    //<span>
+    //    @item.Result
+    //</span>
+    <div class="text-center">
+        @foreach (var item in @Model.Records)
+        {
+            <p>@item.ToString()</p>
+        }
+    </div>
+    <br />
+
+}

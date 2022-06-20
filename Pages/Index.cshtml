@@ -1,0 +1,38 @@
+﻿@page
+@using dotnet_zadanie5.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Person.Year"></label>
+            <input asp-for="Person.Year" /><br />
+            <span asp-validation-for="Person.Year" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Person.Name"></label>
+            <input asp-for="Person.Name" /><br />
+            <span asp-validation-for="Person.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Person.LastName"></label>
+            <input asp-for="Person.LastName" /><br />
+            <span asp-validation-for="Person.LastName" class="text-danger"></span>
+        </div>
+        <button type="submit">Zatwierdź</button>
+    </form>
+
+    <br />
+    <br />
+    <div class="text-center">
+        <p>Wpisy z dnia @DateTime.Today.ToString("dd.MM.yyyy"): </p>
+
+        @foreach (var item in @Model.Records)
+        {
+            <p>@item.ToString()</p>
+        }
+    </div>
+</div>
